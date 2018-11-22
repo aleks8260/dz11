@@ -37,13 +37,14 @@ foreach ($all_posts_result as $post) {
 <!--        <td>--><?//= $post['comments_count'];?><!--</td>-->
 <!--        <td>--><?//= $post['views_count'];?><!--</td>-->
         <td><a href="posts.php?source=edit_post&post_id=<?= $post['id'];?>" class="btn btn-success">Редактировать</a></td>
-        <td><a href="posts.php?source=delete_post&post_id=<?= $post['id'];?>" class="btn btn-danger">Удалить</a></td>
+        <!--
+        <td><a href="posts.php?source=delete_post=<?= $post['id'];?>" class="btn btn-danger">Удалить</a></td>
+        Если данным способом, то он вроде как берет айдишник и не удаляет-->
+        <td><a href="posts.php?delete_post=<?= $post['id'];?>" class="btn btn-danger">Удалить</a></td>
+        <!--Если таким способом, который вы мне писали, то он меня перебрасывает на посты и все-->
     </tr>
     
     <?php
         }
-    ?>
-    <?php
-     deletePosts();
     ?>
 </table>

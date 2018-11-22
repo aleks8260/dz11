@@ -25,7 +25,7 @@ if (isset($_POST['update_post'])) {
     $title = $_POST['title'];
     $category_id = $_POST['category_id'];
     $author = $_POST['author'];
-    $date = date('d-m-Y');
+    $date = date['Y-m-d', now()];
     $tags = $_POST['tags'];
     $status = $_POST['status'];
     $content = $_POST['content'];
@@ -42,14 +42,21 @@ if (isset($_POST['update_post'])) {
 
     }
     // Запрос на обновление поста
-    $sql_update_post ="UPDATE posts SET title = '$title', category_id = '$category_id', author = '$author', date = now(), tags = '$tags', content = '$content', status = '$status' WHERE id = $post_id";
+    $sql_update_post ="UPDATE posts SET title = '$title', category_id = '$category_id', author = '$author', date = '$date', tags = '$tags', content = '$content', image = '$image_name', status = '$status' WHERE id = $post_id";
     // Выполняем запрос к БД
     $result_updating_post = mysqli_query($connection, $sql_update_post);
 
     confirmQuery($result_updating_post);
 
-    $destiation_dir = dirname("../images") .'/'.$_FILES['image']['name']; // Директория для размещения файла (не удается засунуть в данную папку)
-    move_uploaded_file($_FILES['image']['tmp_name'], $destiation_dir ); // Перемещаем файл в желаемую директорию
+//    $destiation_dir = dirname("../images") .'/'.$_FILES['image']['name']; // Директория для размещения файла (не удается засунуть в данную папку)
+//    move_uploaded_file($_FILES['image']['tmp_name'], $destiation_dir ); // Перемещаем файл в желаемую директорию
+        $file = $_FILES['image'];
+        $dir = '../images/';
+        if(!file_exists($dir)){    
+            mkdir($dir, 0777);
+        }
+        $file_name = $dir.'/'.$file['name'];
+        move_uploaded_file($file['tmp_name'], $file_name);
 }
 
 

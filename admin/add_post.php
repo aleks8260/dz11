@@ -22,10 +22,19 @@
 
         // todo не работает загрузка на сервер
         //move_uploaded_file($image_tmp,"../images" );
-        $destiation_dir = dirname("../images") .'/'.$_FILES['image']['name']; // Директория для размещения файла (не удается засунуть в данную папку)
-        move_uploaded_file($_FILES['image']['tmp_name'], $destiation_dir ); // Перемещаем файл в желаемую директорию
-    }
-
+        //$destiation_dir = dirname("../images") .'/'.$_FILES['image']['name']; // Директория для размещения файла (не удается засунуть в данную папку)
+        //move_uploaded_file($_FILES['image']['tmp_name'], $destiation_dir ); // Перемещаем файл в желаемую директорию
+//        $destiation_dir = '/uploads/images/';
+//        $uploadfile = $destiation_dir . basename($_FILES['image']['name']);
+//        move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile );
+        $file = $_FILES['image'];
+        $dir = '../images/';
+        if(!file_exists($dir)){    
+            mkdir($dir, 0777);
+        }
+        $file_name = $dir.'/'.$file['name'];
+        move_uploaded_file($file['tmp_name'], $file_name);
+}
 
 ?>
 

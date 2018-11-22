@@ -163,7 +163,7 @@
                         <a href=""><i class="fa fa-fw fa-dashboard"></i> Комментарии</a>
                     </li>
                     <li>
-                        <a href=""><i class="fa fa-fw fa-dashboard"></i> Пользователи</a>
+                        <a href="users.php"><i class="fa fa-fw fa-dashboard"></i> Пользователи</a>
                     </li>
                 </ul>
             </div>

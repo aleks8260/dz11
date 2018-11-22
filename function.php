@@ -47,6 +47,27 @@ function confirmQuery($result) {
     }
 }
 
+function allUsers() {
+    global $connection;
+
+    $sql_users = "SELECT * FROM users";
+    $users_query = mysqli_query($connection, $sql_users);
+    confirmQuery($users_query);
+
+    foreach ($users_query as $item) { ?>
+        <tr>
+            <td><?= $item['user_id'] ?></td>
+            <td><?= $item['username'] ?></td>
+            <td><?= $item['user_password'] ?></td>
+            <td><?= $item['user_firstname'] ?></td>
+            <td><?= $item['user_lastname'] ?></td>
+            <td><?= $item['user_email'] ?></td>
+            <td><?= $item['user_image'] ?></td>
+            <td><?= $item['user_role'] ?></td>
+        </tr>
+        <?php
+    }
+}
 ?>
 
 
